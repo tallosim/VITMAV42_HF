@@ -1,0 +1,57 @@
+#map {
+    height: calc(100vh - 56px);
+    width : 100%;
+}
+
+.bg-gray {
+    background-color: #2a2a2a !important;
+}
+
+.btn {
+    display     : inline-block;
+    background  : #1fb5bf;
+    border      : 1px solid darken(#1fb5bf, 5%);
+    padding     : .3em 2em;
+    color       : white;
+    margin-right: .5em;
+    box-shadow  : inset 0px 1px 0px fadeout(white, 80%);
+    height: 38px;
+}
+
+.btn:hover {
+    background: lighten(#1fb5bf, 5%);
+}
+
+.btn:active {
+    background: #1fb5bf;
+    box-shadow: inset 0px 1px 1px fadeout(black, 90%);
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.leaflet-popup-content {
+    margin: 10px !important;
+}
+
+.popup-img {
+    width : 300px;
+    height: 200px;
+}
+
+.popup-container {
+    text-align : center;
+    line-height: 1;
+}
+
+.popup-container>.img-name,
+.popup-container>.img-date,
+.popup-container>.img-author {
+    margin: 5px 0;
+}
+
+.popup-container>.img-name {
+    font-weight: 700;
+    font-size  : larger;
+}
