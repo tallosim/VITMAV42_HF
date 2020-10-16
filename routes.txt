@@ -1,0 +1,65 @@
+map.html - térkép, markers, 
+edit-location.html
+login.html
+register.html
+forgot-password.html
+
+router.js
+
+middleware/renderMW.js
+
+middleware/auth/
+    authMW.js
+    checkUserPwdMW.js
+    sendPwdMW.js
+
+middleware/user/
+    getUserByEmailMW.js
+    getUserByIDMW.js
+    saveUserMW.js
+
+middleware/location/
+    getLocationMW.js
+    getLocationsMW.js
+    saveLocationMW.js
+    delLocationMW.js
+
+
+GET /                               - térkép nézet, statikus
+    authMW
+    getUserByIDMW
+    renderMW(map.html)
+
+GET /location                       - REST API vissza adja helyszíneket
+    authMW
+    getLocationsMW
+    restApiMW
+
+GET, POST /location/new             - új helyszín létrehozása
+    authMW
+    saveLocationMW
+    renderMW(edit-location.html (new))
+
+GET, POST /location/edit/:imageID
+    authMW
+    getLocationMW
+    saveLocationMW
+    renderMW(edit-location.html)
+
+DELETE /location/del/:imageID
+    authMW
+    delLocationMW
+
+GET, POST /login
+    getUserByEmailMW
+    checkUserPwdMW
+    renderMW(login.html)
+
+GET, POST /register
+    saveUserMW
+    renderMW(register.html)
+
+GET, POST /forgot-password
+    getUserByEmailMW
+    sendPwdMW
+    renderMW(forgot-password.html)
