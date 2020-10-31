@@ -2,8 +2,8 @@
  * Renders template with the template engine.
  */
 
-module.exports = (objectRepository, templateName) => {
+module.exports = (objectRepository, viewName, options) => {
     return (req, res, next) => {
-        next()
+        res.render(viewName, { ...options, ...res.locals })
     }
 }

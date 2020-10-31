@@ -5,7 +5,16 @@ var map = L.map('map', { center: [47.497798, 19.040324], zoom: 13, layers: [tile
 
 var layerGroup = L.layerGroup().addTo(map)
 
-fetch('https://picsum.photos/v2/list').then(res => res.text().then(text => JSON.parse(text)).then(data => addPics(data)))
+fetch('/location').then(res => res.text().then(text => JSON.parse(text)).then(data => addPics(data)))
+
+map.on('contextmenu', e => {
+    const modal = document.getElementById('_popover')
+    fetch('/location/new').then(res => res.text().then(text => {
+        modal.innerHTML += text
+        modal.style.display = 'block'
+    }))
+})
+
 
 function addPics(pics) {
     const markers = pics.map(pic => {
@@ -14,7 +23,7 @@ function addPics(pics) {
         <div class='popup-container'>
             <img src='https://picsum.photos/id/${pic.id}/300/200' />
             <p class='img-name'>${'Amazing location'}</p>
-            <p class='img-date'>${'2020/09/30'}</p>
+            <p class='img-date'>${new Date().toLocaleDateString()}</p>
             <p class='img-author'>Author: <b>${pic.author}</b></p>
         </div>`)
         marker.bindPopup(popup)

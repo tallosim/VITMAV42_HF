@@ -1,0 +1,13 @@
+<div class="log-form" id="edit-location">
+	<h2><%= viewMode === 'new' ? 'Add' : 'Edit' %> location</h2>
+	<form method="POST">
+		<input type="text" title="location-name" placeholder="location name" />
+		<input type="date" title="capture-date" placeholder="capture date" />
+		<input type="text" title="used-gear" placeholder="used gear" />
+		<input type="url" title="img-url" placeholder="image URL" />
+		<a type="submit" class="btn" href="/"
+			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null">Save</a>
+		<a type="submit" class="btn btn-delete" href="/"
+			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null">Delete</a>
+	</form>
+</div>

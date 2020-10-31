@@ -1,1 +1,3 @@
 # VITMAV42_HF
+
+ToDo: popup editor-t rendbe kéne rakni, mert hát vannak vele gondok...

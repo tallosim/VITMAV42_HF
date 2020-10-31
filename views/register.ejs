@@ -1,0 +1,15 @@
+<%- include('header', {title: 'Register', stylesheet: 'login.less'}) -%>
+
+<div class="log-form">
+	<h2>Register a new account</h2>
+	<form>
+		<input type="text" title="email" placeholder="e-mail addresss" />
+		<input type="text" title="fullname" placeholder="full name" />
+		<input type="password" title="password" placeholder="password" />
+		<input type="password" title="password-again" placeholder="password again" />
+		<a type="submit" class="btn" href="/">Register</a>
+		<a class="forgot" href="/login">Already have an account?</a>
+	</form>
+</div>
+
+<%- include('footer') -%>
