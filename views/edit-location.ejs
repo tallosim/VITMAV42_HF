@@ -1,13 +1,13 @@
 <div class="log-form" id="edit-location">
 	<h2><%= viewMode === 'new' ? 'Add' : 'Edit' %> location</h2>
 	<form method="POST">
-		<input type="text" title="location-name" placeholder="location name" />
-		<input type="date" title="capture-date" placeholder="capture date" />
-		<input type="text" title="used-gear" placeholder="used gear" />
-		<input type="url" title="img-url" placeholder="image URL" />
-		<a type="submit" class="btn" href="/"
-			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null">Save</a>
-		<a type="submit" class="btn btn-delete" href="/"
-			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null">Delete</a>
+		<input class="input" type="text" name="name" placeholder="location name" value="<%= typeof location === 'undefined' ? '' : location.name  %>"/>
+		<input class="input" type="date" name="captureDate" placeholder="capture date" value="<%= typeof location === 'undefined' ? '' : new Date(location.captureDate).toLocaleDateString() %>"/>
+		<input class="input" type="text" name="desc" placeholder="description" value="<%= typeof location === 'undefined' ? '' : location.description %>"/>
+		<input class="input" type="url" name="url" placeholder="image URL" value="<%= typeof location === 'undefined' ? '' : location.url %>"/>
+		<input type="submit" class="btn" href="/" value="Save"
+			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null;" />
+		<input type="submit" class="btn btn-delete" href="/" value="Delete"
+			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null;" />
 	</form>
 </div>

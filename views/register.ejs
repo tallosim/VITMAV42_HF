@@ -2,12 +2,15 @@
 
 <div class="log-form">
 	<h2>Register a new account</h2>
-	<form>
-		<input type="text" title="email" placeholder="e-mail addresss" />
-		<input type="text" title="fullname" placeholder="full name" />
-		<input type="password" title="password" placeholder="password" />
-		<input type="password" title="password-again" placeholder="password again" />
-		<a type="submit" class="btn" href="/">Register</a>
+	<form method="POST">
+		<input class="input" type="text" name="email" placeholder="e-mail addresss" />
+		<input class="input" type="text" name="fullname" placeholder="full name" />
+		<input class="input" type="password" name="password" placeholder="password" />
+		<input class="input" type="password" name="passwordagain" placeholder="password again" />
+		<% if (typeof error !== 'undefined') { %>
+			<div class='alert alert-danger'><%= error %></div>
+		<% } %>
+		<input type="submit" class="btn" value="Register" />
 		<a class="forgot" href="/login">Already have an account?</a>
 	</form>
 </div>

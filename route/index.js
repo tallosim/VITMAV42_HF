@@ -14,8 +14,14 @@ const delLocationMW = require('../middleware/location/delLocationMW')
 const renderMW = require('../middleware/renderMW')
 const restApiMW = require('../middleware/restApiMW')
 
+const UserModel = require('../models/user')
+const LocationModel = require('../models/location')
+
 module.exports = (app) => {
-    const objectRepository = {}
+    const objectRepository = {
+        UserModel: UserModel,
+        LocationModel: LocationModel
+    }
 
     app.get('/location',
         authMW(objectRepository),
@@ -25,6 +31,7 @@ module.exports = (app) => {
 
     app.use('/location/new',
         authMW(objectRepository),
+        //getLocationMW(objectRepository),
         saveLocationMW(objectRepository),
         renderMW(objectRepository, 'edit-location', { viewMode: 'new' })
     )
@@ -33,7 +40,7 @@ module.exports = (app) => {
         authMW(objectRepository),
         getLocationMW(objectRepository),
         saveLocationMW(objectRepository),
-        renderMW(objectRepository, 'edit-location', { viewMode: 'edit'})
+        renderMW(objectRepository, 'edit-location', { viewMode: 'edit' })
     )
 
     app.delete('/location/delete/:locationID',
@@ -48,6 +55,7 @@ module.exports = (app) => {
     )
 
     app.use('/register',
+        getUserByEmailMW(objectRepository),
         createUserWN(objectRepository),
         renderMW(objectRepository, 'register')
     )

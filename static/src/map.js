@@ -18,21 +18,16 @@ map.on('contextmenu', e => {
 
 function addPics(pics) {
     const markers = pics.map(pic => {
-        const marker = new L.Marker([getRandomInRange(47.4, 47.6, 6), getRandomInRange(18.939, 19.233, 6)])
+        const marker = new L.Marker([pic.lat, pic.lon])
         const popup = new L.Popup({ closeButton: false, minWidth: 300 }).setContent(`
         <div class='popup-container'>
-            <img src='https://picsum.photos/id/${pic.id}/300/200' />
-            <p class='img-name'>${'Amazing location'}</p>
-            <p class='img-date'>${new Date().toLocaleDateString()}</p>
-            <p class='img-author'>Author: <b>${pic.author}</b></p>
+            <img class='img' src='${pic.url}' />
+            <p class='img-name'>${pic.name}</p>
+            <p class='img-date'>${new Date(pic.captureDate).toLocaleDateString()}</p>
+            <p class='img-author'>Author: <b>${pic._author.name}</b></p>
         </div>`)
         marker.bindPopup(popup)
         return marker
     })
     markers.map(marker => marker.addTo(layerGroup))
-}
-
-
-function getRandomInRange(from, to, fixed) {
-    return (Math.random() * (to - from) + from).toFixed(fixed) * 1
 }

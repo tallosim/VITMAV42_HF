@@ -1,14 +1,13 @@
 /**
  * Send datas from the res.locals by the given dataType.
  */
-
+const requireOption = require('./requireOption')
 const fs = require('fs')
 
 module.exports = (objectRepository, dataType) => {
     return (req, res, next) => {
         if (dataType === 'locations') {
-            const locations = JSON.parse(fs.readFileSync(__dirname + '/../testLocations.json'))
-            res.json(locations)
+            res.json(res.locals.locations)
         }
     }
 }

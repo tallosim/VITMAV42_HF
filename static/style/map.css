@@ -66,3 +66,8 @@
     z-index: 10000;
     display: none;
 }
+
+.img {
+    width: 300px;
+    height: 200px;
+}

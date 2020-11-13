@@ -2,10 +2,13 @@
 
 <div class="log-form">
 	<h2>Login to your account</h2>
-	<form>
-		<input type="text" title="email" placeholder="e-mail address" />
-		<input type="password" title="password" placeholder="password" />
-		<a type="submit" class="btn" href="/">Login</a>
+	<form method="POST" action="">
+		<input class="input" type="text" name="email" placeholder="e-mail address" />
+		<input class="input" type="password" name="password" placeholder="password" />
+		<% if (typeof error !== 'undefined') { %>
+			<div class='alert alert-danger'><%= error %></div>
+		<% } %>
+		<input type="submit" class="btn" value="Login" />
 		<a class="forgot" href="/forgot">Forgot password?</a><br>
 		<a class="forgot" href="/register">Register a new account</a>
 	</form>
