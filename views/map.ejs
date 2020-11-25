@@ -11,16 +11,13 @@
 <nav class="navbar navbar-dark bg-gray">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">WebSiteName</a>
+            <a class="navbar-brand" href="#">Image Location Viewer</a>
         </div>
-        <ul class="nav navbar-nav">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn" type="submit">Search</button>
-            </form>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="navbar-brand"><i class="fa fa-user"></i> <%= typeof user === 'undefined' ? '' : user.name  %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a class="btn" href="/login">Sign Out</a></li>
+            <li><a class="btn" href="/logout">Sign Out</a></li>
         </ul>
     </div>
 </nav>

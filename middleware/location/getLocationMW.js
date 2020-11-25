@@ -13,6 +13,10 @@ module.exports = (objectRepository) => {
                 return next(err)
             }
 
+            if (location._author._id != req.session._id) {
+                return res.redirect('/logout')
+            }
+
             res.locals.location = location
 
             next()

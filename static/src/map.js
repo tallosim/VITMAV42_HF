@@ -8,23 +8,21 @@ var layerGroup = L.layerGroup().addTo(map)
 fetch('/location').then(res => res.text().then(text => JSON.parse(text)).then(data => addPics(data)))
 
 map.on('contextmenu', e => {
-    const modal = document.getElementById('_popover')
-    fetch('/location/new').then(res => res.text().then(text => {
-        modal.innerHTML += text
-        modal.style.display = 'block'
-    }))
+    window.location.assign(`/location/new?lat=${e.latlng.lat}&lon=${e.latlng.lng}`)
 })
 
 
-function addPics(pics) {
-    const markers = pics.map(pic => {
-        const marker = new L.Marker([pic.lat, pic.lon])
-        const popup = new L.Popup({ closeButton: false, minWidth: 300 }).setContent(`
+function addPics(response) {
+    const markers = response.locations.map(pic => {
+        const marker = new L.Marker([pic.lat, pic.lon], {title: pic.name})
+        const popup = new L.Popup({ closeButton: false}).setContent(`
         <div class='popup-container'>
-            <img class='img' src='${pic.url}' />
+            <a href='${pic.url}'><img class='img' src='${pic.url}' /></a>
             <p class='img-name'>${pic.name}</p>
             <p class='img-date'>${new Date(pic.captureDate).toLocaleDateString()}</p>
             <p class='img-author'>Author: <b>${pic._author.name}</b></p>
+            <span><i>${pic.desc}</i></span>
+            ${response.loggedUserID == pic._author._id ? `</br><a class='btn btn-edit' href='/location/edit/${pic._id}'><i class='fa fa-edit'></i> Edit</a>` : ''}
         </div>`)
         marker.bindPopup(popup)
         return marker

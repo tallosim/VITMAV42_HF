@@ -1,13 +1,23 @@
+<%- include('header', {title: (viewMode === 'new' ? 'Add' : 'Edit') + ' location'}) -%>
+
 <div class="log-form" id="edit-location">
 	<h2><%= viewMode === 'new' ? 'Add' : 'Edit' %> location</h2>
 	<form method="POST">
-		<input class="input" type="text" name="name" placeholder="location name" value="<%= typeof location === 'undefined' ? '' : location.name  %>"/>
-		<input class="input" type="date" name="captureDate" placeholder="capture date" value="<%= typeof location === 'undefined' ? '' : new Date(location.captureDate).toLocaleDateString() %>"/>
-		<input class="input" type="text" name="desc" placeholder="description" value="<%= typeof location === 'undefined' ? '' : location.description %>"/>
+		<input class="input" type="text" name="name" placeholder="image name" value="<%= typeof location === 'undefined' ? '' : location.name  %>"/>
+		<input class="input" type="date" name="captureDate" placeholder="capture date" id="captureDate" value="" />
+		<input class="input" type="text" name="desc" placeholder="description" value="<%= typeof location === 'undefined' ? '' : location.desc %>"/>
 		<input class="input" type="url" name="url" placeholder="image URL" value="<%= typeof location === 'undefined' ? '' : location.url %>"/>
-		<input type="submit" class="btn" href="/" value="Save"
-			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null;" />
-		<input type="submit" class="btn btn-delete" href="/" value="Delete"
-			onclick="document.getElementById('_popover').style.display = 'none'; document.getElementById('edit-location') = null;" />
+		<input class="input" type="text" name="lat" placeholder="latitude" value="<%= typeof location === 'undefined' ? '' : location.lat %>"/>
+		<input class="input" type="text" name="lon" placeholder="longitude" value="<%= typeof location === 'undefined' ? '' : location.lon %>"/>
+		<% if (typeof error !== 'undefined') { %>
+			<div class='alert alert-danger'><%= error %></div>
+		<% } %>
+		<input type="submit" class="btn" value="Save" />
+		<a class="btn btn-delete" href="<%= viewMode === 'new' ? '/' :`/location/delete/${typeof location === 'undefined' ? '' : location._id}` %>"><%= viewMode === 'new' ? 'Cancel' : 'Delete'%></a>
 	</form>
+	<script>
+		document.getElementById('captureDate').valueAsDate = new Date("<%= typeof location === 'undefined' && !location.captureDate ? new Date() : new Date(location.captureDate) %>")
+	</script>
 </div>
+
+<%- include('footer') -%>

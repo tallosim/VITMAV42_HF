@@ -1,6 +1,7 @@
 const authMW = require('../middleware/auth/authMW')
 const checkUserPwdMW = require('../middleware/auth/checkUserPwdMW')
 const sendPwdMW = require('../middleware/auth/sendPwdMW')
+const logoutMW = require('../middleware/auth/logoutMW')
 
 const createUserWN = require('../middleware/user/createUserWN')
 const getUserByEmailMW = require('../middleware/user/getUserByEmailMW')
@@ -31,7 +32,6 @@ module.exports = (app) => {
 
     app.use('/location/new',
         authMW(objectRepository),
-        //getLocationMW(objectRepository),
         saveLocationMW(objectRepository),
         renderMW(objectRepository, 'edit-location', { viewMode: 'new' })
     )
@@ -43,8 +43,9 @@ module.exports = (app) => {
         renderMW(objectRepository, 'edit-location', { viewMode: 'edit' })
     )
 
-    app.delete('/location/delete/:locationID',
+    app.get('/location/delete/:locationID',
         authMW(objectRepository),
+        getLocationMW(objectRepository),
         delLocationMW(objectRepository)
     )
 
@@ -64,6 +65,10 @@ module.exports = (app) => {
         getUserByEmailMW(objectRepository),
         sendPwdMW(objectRepository),
         renderMW(objectRepository, 'forgot-password')
+    )
+
+    app.use('/logout',
+        logoutMW(objectRepository)
     )
 
     app.get('/',

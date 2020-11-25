@@ -5,9 +5,9 @@ const requireOption = require('../requireOption')
 
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        /**
-         * if(!belepve?) return res.redirect('/login')
-         */
+        if (req.session.logged === undefined || req.session.logged !== true) {
+            return res.redirect('/login')
+        }
 
         next()
     }

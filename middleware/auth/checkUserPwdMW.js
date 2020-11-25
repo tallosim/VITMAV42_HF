@@ -5,15 +5,17 @@ const requireOption = require('../requireOption')
 
 module.exports = (objectRepository) => {
     return (req, res, next) => {
-        if (!req.body.password) {
+        if (!req.body.password || !res.locals.user) {
             return next()
         }
-        
+
         if (req.body.password === res.locals.user.password) {
-            return res.redirect('/')
+            req.session.logged = true
+            req.session._id = res.locals.user._id
+            return req.session.save(err => res.redirect('/'))
         }
 
-        res.locals.error = 'Wrong password!'
+        res.locals.error = 'Invalid email or password!'
         next()
     }
 }

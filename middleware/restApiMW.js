@@ -7,7 +7,7 @@ const fs = require('fs')
 module.exports = (objectRepository, dataType) => {
     return (req, res, next) => {
         if (dataType === 'locations') {
-            res.json(res.locals.locations)
+            res.json({ locations: res.locals.locations, loggedUserID: req.session._id })
         }
     }
 }

@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 
 const app = express()
 
@@ -8,6 +9,8 @@ app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
 
 app.use(express.static('static'))
+
+app.use(session({ secret: 'nagyontitkos' }))
 
 require('./route/index')(app)
 
@@ -38,10 +41,10 @@ app.listen(5000, () => console.log('http://localhost:5000'))
 //         let valami = new LocationModel()
 //         valami.url = element.download_url
 //         valami.captureDate = new Date()
-//         valami.desc = 'Made by: ' + element.author
+//         valami.desc = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lacinia eget purus id hendrerit.'
 //         valami.lat = getRandomInRange(47.4, 47.6, 6)
 //         valami.lon = getRandomInRange(18.939, 19.233, 6)
-//         valami.locationName = 'Budapest'
+//         valami.name = 'Good Image Name'
 //         valami._author = valaki
 
 //         valami.save((err) => {
@@ -54,4 +57,4 @@ app.listen(5000, () => console.log('http://localhost:5000'))
 
 // function getRandomInRange(from, to, fixed) {
 //     return (Math.random() * (to - from) + from).toFixed(fixed) * 1
-// }
+//}

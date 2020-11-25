@@ -14,8 +14,12 @@ module.exports = (objectRepository) => {
 
 
         UserModel.findOne({ email: req.body.email }, (err, user) => {
-            if (err || !user) {
+            if (err) {
                 return next(err)
+            }
+
+            if (!user) {
+                res.locals.error = 'Invalid email or password!'
             }
 
             res.locals.user = user
