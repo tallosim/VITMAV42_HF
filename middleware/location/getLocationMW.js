@@ -19,7 +19,7 @@ module.exports = (objectRepository) => {
 
             res.locals.location = location
 
-            next()
+            return next()
         })
     }
 }

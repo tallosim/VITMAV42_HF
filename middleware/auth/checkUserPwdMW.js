@@ -16,6 +16,6 @@ module.exports = (objectRepository) => {
         }
 
         res.locals.error = 'Invalid email or password!'
-        next()
+        return next()
     }
 }

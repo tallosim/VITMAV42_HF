@@ -19,7 +19,7 @@ module.exports = (objectRepository) => {
             }
 
             res.locals.user = user
-            next()
+            return next()
         })
     }
 }
