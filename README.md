@@ -1,3 +1,6 @@
 # VITMAV42_HF
 
-Done...
+```
+npm i
+npm start
+```
